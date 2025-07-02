@@ -9,6 +9,7 @@ from .views import artwork_create_api
 urlpatterns = [
     path('', views.gallery_view, name='gallery'),
     path('contact/', views.contact_view, name='contact'),
+    path('register/', views.register_view, name='register'),
     path('artworks/', ArtworkListAPIView.as_view(), name='artwork-list'),
     path('api/', include('gallery.api_urls')),
     path('api/artworks/create/', artwork_create_api, name='artwork-create'),

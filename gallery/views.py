@@ -1,9 +1,11 @@
 import base64
 
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 import json
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,7 +19,7 @@ from .serializers import ArtworkSerializer
 
 def gallery_view(request):
     artworks = Artwork.objects.all().order_by('-date_uploaded')
-    return render(request, 'gallery/gallery.html', {'artworks': artworks})
+    return render(request, 'gallery/gallery_page.html', {'artworks': artworks})
 
 
 def contact_view(request):
@@ -69,3 +71,15 @@ def artwork_create_api(request):
 
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+

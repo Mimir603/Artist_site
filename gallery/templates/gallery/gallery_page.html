@@ -1,0 +1,29 @@
+{% extends "gallery/gallery.html" %}
+
+{% block title %}Галерея{% endblock %}
+
+{% block content %}
+  <div class="grid">
+    {% for artwork in artworks %}
+      <div class="card">
+        <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" data-bs-toggle="modal" data-bs-target="#modal{{ artwork.id }}">
+        <p>{{ artwork.published_date }}</p>
+      </div>
+
+      <div class="modal fade" id="modal{{ artwork.id }}" tabindex="-1" aria-labelledby="modalLabel{{ artwork.id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalLabel{{ artwork.id }}">{{ artwork.title }}</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body text-center">
+              <img src="{{ artwork.image.url }}" class="img-fluid rounded" alt="{{ artwork.title }}">
+              <p class="mt-3">{{ artwork.description }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

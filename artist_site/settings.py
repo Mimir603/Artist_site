@@ -59,7 +59,7 @@ ROOT_URLCONF = 'artist_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'gallery' / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'gallery/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -140,3 +140,6 @@ EMAIL_HOST_PASSWORD = '74186EEy'
 CONTACT_EMAIL = 'ustricus@gmail.com'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
