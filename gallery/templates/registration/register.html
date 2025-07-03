@@ -1,7 +1,7 @@
-{% extends "gallery/gallery_page.html" %}
+{% extends "gallery/gallery.html" %}
 {% block content %}
-  <div class="container mt-5">
-    <h2>Регистрация</h2>
+  <div class="container mt-5" style="max-width: 500px;">
+    <h2 class="mb-4">{% block title %}Регистрация{% endblock %}</h2>
     <form method="post">
       {% csrf_token %}
       {{ form.as_p }}

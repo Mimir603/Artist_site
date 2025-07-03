@@ -24,19 +24,16 @@ def gallery_view(request):
 
 def contact_view(request):
     success = False
+    form = ContactForm()
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
-            send_mail(
-                subject=f"Сообщение от {form.cleaned_data['name']}",
-                message=form.cleaned_data['message'],
-                from_email=form.cleaned_data['email'],
-                recipient_list=[settings.CONTACT_EMAIL],
-            )
             success = True
-    else:
-        form = ContactForm()
-    return render(request, 'gallery/contact.html', {'form': form, 'success': success})
+            form = ContactForm()
+    return render(request, 'gallery/contact.html', {
+        'form': form,
+        'success': success
+    })
 
 
 class ArtworkListAPI(APIView):

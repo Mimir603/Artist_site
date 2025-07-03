@@ -4,9 +4,19 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class ContactForm(forms.Form):
-    name = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    message = forms.CharField(widget=forms.Textarea)
+    name = forms.CharField(
+        label='Имя',
+        max_length=100,
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите имя'})
+    )
+    email = forms.EmailField(
+        label='Email',
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Введите email'})
+    )
+    message = forms.CharField(
+        label='Сообщение',
+        widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Ваше сообщение', 'rows': 4})
+    )
 
 
 class CustomUserCreationForm(UserCreationForm):
