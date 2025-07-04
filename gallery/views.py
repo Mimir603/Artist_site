@@ -11,8 +11,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Artwork
-from django.core.mail import send_mail
-from django.conf import settings
 from .forms import ContactForm
 from .serializers import ArtworkSerializer
 
